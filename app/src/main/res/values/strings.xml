@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">TheMemoryGame</string>
+    <string name="title_activity_mg34">Memory Game 3x4</string>
+    <string name="title_activity_mg44">Memory Game 4x4</string>
+    <string name="title_activity_mg54">Memory Game 5x4</string>
+    <string name="Main_Page">Main Page</string>
+    <string name="IB1x1">imageButton1x1</string>
+    <string name="IB1x2">imageButton1x2</string>
+    <string name="IB1x3">imageButton1x3</string>
+    <string name="IB1x4">imageButton1x4</string>
+    <string name="IB2x1">imageButton2x1</string>
+    <string name="IB2x2">imageButton2x2</string>
+    <string name="IB2x3">imageButton2x3</string>
+    <string name="IB2x4">imageButton2x4</string>
+    <string name="IB3x1">imageButton3x1</string>
+    <string name="IB3x2">imageButton3x2</string>
+    <string name="IB3x3">imageButton3x3</string>
+    <string name="IB3x4">imageButton3x4</string>
+    <string name="IB4x1">imageButton4x1</string>
+    <string name="IB4x2">imageButton4x2</string>
+    <string name="IB4x3">imageButton4x3</string>
+    <string name="IB4x4">imageButton4x4</string>
+    <string name="IB5x1">imageButton5x1</string>
+    <string name="IB5x2">imageButton5x2</string>
+    <string name="IB5x3">imageButton5x3</string>
+    <string name="IB5x4">imageButton5x4</string>
+</resources>
