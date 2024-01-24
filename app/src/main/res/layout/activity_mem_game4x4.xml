@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:orientation="vertical"
-        android:text="@string/title_activity_mg34"
+        android:text="@string/title_activity_mg44"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -32,13 +32,13 @@
 
     <ImageButton
         android:id="@+id/imageButton1x1"
-        android:layout_width="90dp"
-        android:layout_height="120dp"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="120dp"
         android:contentDescription="@string/IB1x1"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,8 +48,8 @@
 
     <ImageButton
         android:id="@+id/imageButton1x2"
-        android:layout_width="90dp"
-        android:layout_height="120dp"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
         android:layout_alignTop="@id/imageButton1x1"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -62,35 +62,35 @@
 
     <ImageButton
         android:id="@+id/imageButton1x3"
-        android:layout_width="90dp"
-        android:layout_height="120dp"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:contentDescription="@string/IB1x3"
         android:scaleType="centerCrop"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton1x4"
+        app:layout_constraintStart_toEndOf="@+id/imageButton1x2"
         app:layout_constraintTop_toTopOf="@+id/imageButton1x2"
         app:srcCompat="@drawable/blueback" />
 
     <ImageButton
         android:id="@+id/imageButton1x4"
-        android:layout_width="90dp"
-        android:layout_height="120dp"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:contentDescription="@string/IB1x4"
         android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageButton1x3"
         app:layout_constraintTop_toTopOf="@+id/imageButton1x3"
         app:srcCompat="@drawable/blueback" />
 
     <ImageButton
         android:id="@+id/imageButton2x1"
-        android:layout_width="90dp"
-        android:layout_height="120dp"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -103,8 +103,8 @@
 
     <ImageButton
         android:id="@+id/imageButton2x2"
-        android:layout_width="90dp"
-        android:layout_height="120dp"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
         android:layout_alignTop="@id/imageButton2x1"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -116,8 +116,8 @@
 
     <ImageButton
         android:id="@+id/imageButton2x3"
-        android:layout_width="90dp"
-        android:layout_height="120dp"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
@@ -129,8 +129,8 @@
 
     <ImageButton
         android:id="@+id/imageButton2x4"
-        android:layout_width="90dp"
-        android:layout_height="120dp"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:contentDescription="@string/IB2x4"
@@ -142,8 +142,8 @@
 
     <ImageButton
         android:id="@+id/imageButton3x1"
-        android:layout_width="90dp"
-        android:layout_height="120dp"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -155,8 +155,8 @@
 
     <ImageButton
         android:id="@+id/imageButton3x2"
-        android:layout_width="90dp"
-        android:layout_height="120dp"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
         android:layout_alignTop="@id/imageButton1x1"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -168,8 +168,8 @@
 
     <ImageButton
         android:id="@+id/imageButton3x3"
-        android:layout_width="90dp"
-        android:layout_height="120dp"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
@@ -181,8 +181,8 @@
 
     <ImageButton
         android:id="@+id/imageButton3x4"
-        android:layout_width="90dp"
-        android:layout_height="120dp"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:contentDescription="@string/IB3x4"
@@ -191,5 +191,54 @@
         app:layout_constraintTop_toTopOf="@+id/imageButton3x3"
         app:srcCompat="@drawable/blueback" />
 
+    <ImageButton
+        android:id="@+id/imageButton4x1"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/IB4x1"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@+id/imageButton3x1"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton3x1"
+        app:srcCompat="@drawable/blueback" />
 
+    <ImageButton
+        android:id="@+id/imageButton4x2"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
+        android:layout_alignTop="@id/imageButton1x1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/IB4x2"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@+id/imageButton3x2"
+        app:layout_constraintTop_toTopOf="@+id/imageButton4x1"
+        app:srcCompat="@drawable/blueback" />
+
+    <ImageButton
+        android:id="@+id/imageButton4x3"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/IB4x3"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@+id/imageButton3x3"
+        app:layout_constraintTop_toTopOf="@+id/imageButton4x2"
+        app:srcCompat="@drawable/blueback" />
+
+    <ImageButton
+        android:id="@+id/imageButton4x4"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/IB4x4"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@+id/imageButton3x4"
+        app:layout_constraintTop_toTopOf="@+id/imageButton4x3"
+        app:srcCompat="@drawable/blueback" />
 </androidx.constraintlayout.widget.ConstraintLayout>

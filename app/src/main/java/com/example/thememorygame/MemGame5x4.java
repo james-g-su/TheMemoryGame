@@ -2,15 +2,14 @@ package com.example.thememorygame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.*;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +21,14 @@ public class MemGame5x4 extends AppCompatActivity {
     ImageButton IB1x1, IB1x2, IB1x3, IB1x4, IB2x1, IB2x2, IB2x3, IB2x4, IB3x1, IB3x2, IB3x3, IB3x4, IB4x1, IB4x2, IB4x3, IB4x4, IB5x1, IB5x2, IB5x3, IB5x4;
     Button button;
 
+    List<Integer> cards = new ArrayList<>();
+    List<MemoryCard> memoryCards = new ArrayList<>();
+    List<ImageButton> iButtons = new ArrayList<>();
+    Integer cardCount = 0;
+    Integer lastCard, curCard = null;
+    private final Integer cardBack = R.drawable.blueback;
+
     private final String LogKey = "LogKey";
-    private Integer score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,255 +39,370 @@ public class MemGame5x4 extends AppCompatActivity {
         button.setOnClickListener(v -> openMain());
 
         Resources res = getResources();
-        Integer dking = R.drawable.diamonds_king;
-        Integer dqueen = R.drawable.diamonds_queen;
-        Integer cking = R.drawable.clubs_king;
-        Integer cqueen = R.drawable.clubs_queen;
-        Integer hking = R.drawable.hearts_king;
-        Integer hqueen = R.drawable.hearts_queen;
-        Integer sking = R.drawable.spades_king;
-        Integer squeen = R.drawable.spades_queen;
-        Integer bjoker = R.drawable.joker_black;
-        Integer rjoker = R.drawable.joker_red;
 
+        iButtons.add(IB1x1 = findViewById(R.id.imageButton1x1));
+        iButtons.add(IB1x2 = findViewById(R.id.imageButton1x2));
+        iButtons.add(IB1x3 = findViewById(R.id.imageButton1x3));
+        iButtons.add(IB1x4 = findViewById(R.id.imageButton1x4));
 
-        List<Integer> cards = new ArrayList<Integer>();
+        iButtons.add(IB2x1 = findViewById(R.id.imageButton2x1));
+        iButtons.add(IB2x2 = findViewById(R.id.imageButton2x2));
+        iButtons.add(IB2x3 = findViewById(R.id.imageButton2x3));
+        iButtons.add(IB2x4 = findViewById(R.id.imageButton2x4));
 
-        cards.add(cking);
-        cards.add(cqueen);
-        cards.add(sking);
-        cards.add(squeen);
-        cards.add(cking);
-        cards.add(cqueen);
-        cards.add(sking);
-        cards.add(squeen);
+        iButtons.add(IB3x1 = findViewById(R.id.imageButton3x1));
+        iButtons.add(IB3x2 = findViewById(R.id.imageButton3x2));
+        iButtons.add(IB3x3 = findViewById(R.id.imageButton3x3));
+        iButtons.add(IB3x4 = findViewById(R.id.imageButton3x4));
 
-        cards.add(cking);
-        cards.add(cqueen);
-        cards.add(sking);
-        cards.add(squeen);
-        cards.add(cking);
-        cards.add(cqueen);
-        cards.add(sking);
-        cards.add(squeen);
+        iButtons.add(IB4x1 = findViewById(R.id.imageButton4x1));
+        iButtons.add(IB4x2 = findViewById(R.id.imageButton4x2));
+        iButtons.add(IB4x3 = findViewById(R.id.imageButton4x3));
+        iButtons.add(IB4x4 = findViewById(R.id.imageButton4x4));
 
-        cards.add(bjoker);
-        cards.add(rjoker);
+        iButtons.add(IB5x1 = findViewById(R.id.imageButton5x1));
+        iButtons.add(IB5x2 = findViewById(R.id.imageButton5x2));
+        iButtons.add(IB5x3 = findViewById(R.id.imageButton5x3));
+        iButtons.add(IB5x4 = findViewById(R.id.imageButton5x4));
 
-        cards.add(bjoker);
-        cards.add(rjoker);
+        cards.add(R.drawable.diamonds_king);
+        cards.add(R.drawable.diamonds_king);
+        cards.add(R.drawable.diamonds_queen);
+        cards.add(R.drawable.diamonds_queen);
+        cards.add(R.drawable.clubs_king);
+        cards.add(R.drawable.clubs_king);
+        cards.add(R.drawable.clubs_queen);
+        cards.add(R.drawable.clubs_queen);
+        cards.add(R.drawable.joker_red);
+        cards.add(R.drawable.joker_red);
+        cards.add(R.drawable.hearts_queen);
+        cards.add(R.drawable.hearts_queen);
+        cards.add(R.drawable.joker_black);
+        cards.add(R.drawable.joker_black);
+        cards.add(R.drawable.clubs_ace);
+        cards.add(R.drawable.clubs_ace);
+        cards.add(R.drawable.diamonds_ace);
+        cards.add(R.drawable.diamonds_ace);
+        cards.add(R.drawable.hearts_ace);
+        cards.add(R.drawable.hearts_ace);
 
         Collections.shuffle(cards);
+        Collections.shuffle(cards);
+        Collections.shuffle(cards);
 
-        IB1x1 = findViewById(R.id.imageButton1x1);
-        IB1x2 = findViewById(R.id.imageButton1x2);
-        IB1x3 = findViewById(R.id.imageButton1x3);
-        IB1x4 = findViewById(R.id.imageButton1x4);
+        for (int i = 0; i < cards.size(); i++) {
+            memoryCards.add(new MemoryCard());
+            memoryCards.get(i).setIdentifier(cards.get(i));
+            if(memoryCards.get(i).face == null){
+                memoryCards.get(i).setFace(false);
+            }
+            if(memoryCards.get(i).match == null){
+                memoryCards.get(i).setMatch(false);
+            }
+        }
 
-        IB2x1 = findViewById(R.id.imageButton2x1);
-        IB2x2 = findViewById(R.id.imageButton2x2);
-        IB2x3 = findViewById(R.id.imageButton2x3);
-        IB2x4 = findViewById(R.id.imageButton2x4);
-
-        IB3x1 = findViewById(R.id.imageButton3x1);
-        IB3x2 = findViewById(R.id.imageButton3x2);
-        IB3x3 = findViewById(R.id.imageButton3x3);
-        IB3x4 = findViewById(R.id.imageButton3x4);
-
-        IB4x1 = findViewById(R.id.imageButton4x1);
-        IB4x2 = findViewById(R.id.imageButton4x2);
-        IB4x3 = findViewById(R.id.imageButton4x3);
-        IB4x4 = findViewById(R.id.imageButton4x4);
-
-        IB5x1 = findViewById(R.id.imageButton5x1);
-        IB5x2 = findViewById(R.id.imageButton5x2);
-        IB5x3 = findViewById(R.id.imageButton5x3);
-        IB5x4 = findViewById(R.id.imageButton5x4);
-
-
-
-        IB1x1 = findViewById(R.id.imageButton1x1);
         IB1x1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IB1x1.setImageResource(cards.get(0));
+                Log.d(LogKey, "Button1x1 clicked");
+                curCard = 0;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
             }
         });
-        IB1x2 = findViewById(R.id.imageButton1x2);
         IB1x2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(LogKey, "Button1x2 clicked");
-                IB1x2.setImageResource(cards.get(1));
+                curCard = 1;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
             }
         });
-
-        IB1x3 = findViewById(R.id.imageButton1x3);
         IB1x3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(LogKey, "Button1x3 clicked");
-                IB1x3.setImageResource(cards.get(2));
+                curCard = 2;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
             }
         });
-
-        IB1x4 = findViewById(R.id.imageButton1x4);
         IB1x4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(LogKey, "Button1x4 clicked");
-                IB1x4.setImageResource(cards.get(3));
+                curCard = 3;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
 
 
-        IB2x1 = findViewById(R.id.imageButton2x1);
         IB2x1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(LogKey, "Button2x1 clicked");
-                IB2x1.setImageResource(cards.get(4));
+                Log.d(LogKey, "Button2x2 clicked");
+                curCard = 4;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
-
-        IB2x2 = findViewById(R.id.imageButton2x2);
         IB2x2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(LogKey, "Button2x2 clicked");
-                IB2x2.setImageResource(cards.get(5));
+                Log.d(LogKey, "Button2x3 clicked");
+                curCard = 5;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
-
-        IB2x3 = findViewById(R.id.imageButton2x3);
         IB2x3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(LogKey, "Button2x3 clicked");
-                IB2x3.setImageResource(cards.get(6));
+                Log.d(LogKey, "Button2x4 clicked");
+                curCard = 6;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
 
-        IB2x4 = findViewById(R.id.imageButton2x4);
+
         IB2x4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(LogKey, "Button2x4 clicked");
-                IB2x4.setImageResource(cards.get(7));
+                Log.d(LogKey, "Button3x1 clicked");
+                curCard = 7;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
-
-
-        IB3x1 = findViewById(R.id.imageButton3x1);
         IB3x1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(LogKey, "Button3x1 clicked");
-                IB3x1.setImageResource(cards.get(8));
+                Log.d(LogKey, "Button3x2 clicked");
+                curCard = 8;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
-
-        IB3x2 = findViewById(R.id.imageButton3x2);
         IB3x2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(LogKey, "Button3x2 clicked");
-                IB3x2.setImageResource(cards.get(9));
+                curCard = 9;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
-
-        IB3x3 = findViewById(R.id.imageButton3x3);
         IB3x3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(LogKey, "Button3x3 clicked");
-                IB3x3.setImageResource(cards.get(10));
+                curCard = 10;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
 
-        IB3x4 = findViewById(R.id.imageButton3x4);
         IB3x4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(LogKey, "Button3x4 clicked");
-                IB3x4.setImageResource(cards.get(11));
+                curCard = 11;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
-
-
-        IB4x1 = findViewById(R.id.imageButton4x1);
         IB4x1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(LogKey, "Button4x1 clicked");
-                IB4x1.setImageResource(cards.get(12));
+                curCard = 12;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
-
-        IB4x2 = findViewById(R.id.imageButton4x2);
         IB4x2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(LogKey, "Button4x2 clicked");
-                IB4x2.setImageResource(cards.get(13));
+                curCard = 13;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
-
-        IB4x3 = findViewById(R.id.imageButton4x3);
         IB4x3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(LogKey, "Button4x3 clicked");
-                IB4x3.setImageResource(cards.get(14));
+                curCard = 14;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
 
-        IB4x4 = findViewById(R.id.imageButton4x4);
         IB4x4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(LogKey, "Button4x4 clicked");
-                IB4x4.setImageResource(cards.get(15));
+                curCard = 15;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
-
-
-        IB5x1 = findViewById(R.id.imageButton5x1);
         IB5x1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(LogKey, "Button5x1 clicked");
-                IB5x1.setImageResource(cards.get(16));
+                curCard = 16;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
-
-        IB5x2 = findViewById(R.id.imageButton5x2);
         IB5x2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(LogKey, "Button5x2 clicked");
-                IB5x2.setImageResource(cards.get(17));
+                curCard = 17;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
             }
         });
-
-        IB5x3 = findViewById(R.id.imageButton5x3);
         IB5x3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(LogKey, "Button5x3 clicked");
-                IB5x3.setImageResource(cards.get(18));
+                curCard = 18;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
-
-        IB5x4 = findViewById(R.id.imageButton5x4);
         IB5x4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(LogKey, "Button5x4 clicked");
-                IB5x4.setImageResource(cards.get(19));
+                curCard = 19;
+                // Updating models
+                updateModels(curCard);
+                // Updating views;
+                updateViews();
+
             }
         });
+    }
 
+    public void updateViews(){
+        for (int i = 0; i < cards.size(); i++) {
+            if (memoryCards.get(i).face){
+                iButtons.get(i).setImageResource(cards.get(i));
+            } else {
+                iButtons.get(i).setImageResource(cardBack);
+            }
+        }
+    }
+
+    public void updateModels(Integer pos){
+
+        if (memoryCards.get(pos).face) {
+            Toast.makeText(this, "Please select face down card", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // 0 or 2 cards previously selected
+        if (lastCard == null){
+            lastCard = pos;
+        } // 1 card previously selected
+        else {
+            checkMatch(pos, lastCard);
+            lastCard = null;
+        }
+
+        cardCount += 1;
+        if (cardCount >= 2){
+            resetCards();
+        }
+
+        memoryCards.get(pos).face = !memoryCards.get(pos).face;
+        // 3 cases
+        // 0 cards flipped - flip selected
+        // 1 card flipped - flip selected and check for match
+        // 2 cards flipped - reset and flip
+    }
+
+    public void resetCards(){
+        for (int i = 0; i < cards.size(); i++) {
+            if (memoryCards.get(i).match){
+                iButtons.get(i).setImageResource(cards.get(i));
+            } else {
+                iButtons.get(i).setImageResource(cardBack);
+                memoryCards.get(i).face = false;
+            }
+        }
+    }
+
+    public void checkMatch(Integer card1, Integer card2){
+        if (Objects.equals(memoryCards.get(card1).identifier, memoryCards.get(card2).identifier)){
+            memoryCards.get(card1).match = true;
+            memoryCards.get(card2).match = true;
+            iButtons.get(card1).setAlpha(0.1f);
+            iButtons.get(card2).setAlpha(0.1f);
+            Toast.makeText(this, "Match found!", Toast.LENGTH_SHORT).show();
+        } else {
+            resetCards();
+        }
     }
 
     public void openMain() {
